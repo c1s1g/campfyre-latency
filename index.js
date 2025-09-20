@@ -79,14 +79,6 @@ app.get('/test/comprehensive', async (req, res) => {
       latency: `${Math.round(performance.now() - start)}ms`
     });
     
-    // Test 3: Auth check (if you have auth enabled)
-    start = performance.now();
-    await supabase.auth.getSession();
-    results.push({
-      test: 'Auth session check',
-      latency: `${Math.round(performance.now() - start)}ms`
-    });
-    
     // Calculate average
     const latencies = results.map(r => parseInt(r.latency));
     const average = Math.round(latencies.reduce((a, b) => a + b, 0) / latencies.length);
